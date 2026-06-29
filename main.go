@@ -34,3 +34,12 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+func main() {
+	http.HandleFunc("/ws", handleConnections)
+	log.Println("http server started on port 8000")
+	err := http.ListenAndServe(":8000", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
